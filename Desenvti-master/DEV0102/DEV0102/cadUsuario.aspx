@@ -16,7 +16,7 @@
             <asp:TextBox ID="txtNome" runat="server"></asp:TextBox><br />
             <label>CEP:</label><br />
             <asp:TextBox ID="txtCEP" runat="server"></asp:TextBox> 
-            <asp:Button ID="btnConsultaCEP" runat="server" Text="Consultar CE" OnClick="btnConsultaCEP_Click" />
+            <asp:Button ID="btnConsultaCEP" runat="server" Text="Consultar CEP" OnClick="btnConsultaCEP_Click" />
             <br />
             <label>Endereço:</label><br /> 
             <asp:TextBox ID="txtEndereco" runat="server"></asp:TextBox><br />
