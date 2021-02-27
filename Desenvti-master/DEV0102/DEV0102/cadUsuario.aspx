@@ -31,9 +31,10 @@
             <asp:TextBox ID="txtSenha" runat="server" TextMode="Password"></asp:TextBox>
             <br />
             <asp:FileUpload ID="fupFoto" runat="server" /><br />
-            <asp:Button ID="btnCadastrar" runat="server" Text="Cadastrar" OnClick="btnCadastrar_Click" />
-            <br />
-            <h4>Usuários Cadastrados</h4>
+            <asp:Button ID="btnCadastrar" runat="server" Text="Cadastrar" OnClick="btnCadastrar_Click" /><br />
+            <asp:Panel ID ="PanelUsuariosCadastrados" runat="server" Visible="false"></br>
+            <asp:Button ID="btnEnviarEmail" runat="server" Text="Enviar msg" OnClick="btnEnviarEmail_Click" OnClientClick="return confirm('Deseja envair?!')" /><br />
+             <h4>Usuários Cadastrados</h4>
             <asp:GridView ID="gridUsuario" OnRowCommand="gridUsuario_RowCommand" runat="server" AutoGenerateColumns="False" DataKeyNames="codigo" DataSourceID="SqlDataSourceUsuario" AllowPaging="True" AllowSorting="True">
                 <Columns>
                     <asp:ImageField DataImageUrlField="caminhoFoto" ControlStyle-Height="50px" HeaderText="Foto"></asp:ImageField>
@@ -55,6 +56,8 @@
             <asp:HiddenField ID="hiddenfildCodigo" runat="server" Value="0" />
 
             <asp:SqlDataSource runat="server" ID="SqlDataSourceUsuario" ConnectionString='<%$ ConnectionStrings:DEV0102ConnectionString %>' SelectCommand="select '~/fotoUsuario/' + nomeFoto as caminhoFoto, * from tabusuario"></asp:SqlDataSource>
+          </asp:Panel>
+            <asp:Button ID="btnVoltar" runat="server" Text="Voltar" OnClick="btnVoltar_Click" />
         </div>
     </form>
 </body>

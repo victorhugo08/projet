@@ -14,7 +14,18 @@ namespace DEV0102
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if(Request.ServerVariables["QUERY_STRING"].Contains("Cadastro"))
+            {
+                PanelUsuariosCadastrados.Visible = false;
+            }
+            else if (Session["CodigoUsuario"] == null)
+            {
+                Response.Redirect("Login.aspx");
+            }
+            else
+            {
+                PanelUsuariosCadastrados.Visible = true;
+            }
         }
 
         protected void btnConsultaCEP_Click(object sender, EventArgs e)
@@ -162,6 +173,39 @@ namespace DEV0102
                 btnCadastrar.Text = "Salvar";
                 ExibirMensagem("Liberado para edição!");
             }
+           
+            }
+
+        protected void btnEnviarEmail_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                List<tabUsuario> objLst = new List<tabUsuario>();
+                usuarioDAL uDal = new usuarioDAL(); 
+                objLst = uDal.ListarTodosUsuarios();
+                foreach (tabUsuario item in objLst)
+                {
+                    Suporte sup = new Suporte();
+                    sup.EnviarEmail("Cadastro", item.email, "Olá," +item.nome + " Seja bem-vindo ao nosso sistema DesenvTI");
+
+                    
+                    
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            {
+
+              
+            }
+        }
+
+        protected void btnVoltar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Home.aspx");
         }
     }
-}
+    }
